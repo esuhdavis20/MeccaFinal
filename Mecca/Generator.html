@@ -1,0 +1,326 @@
+<html>
+
+  <style>
+    ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background-color: #333;
+    }
+
+    li {
+      float: left;
+    }
+
+    li a {
+      display: block;
+      color: white;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+    }
+
+    li a:hover {
+      background-color: #111;
+    }
+
+
+
+
+    .dropbtn1 {
+      background-color: red;
+      color: white;
+      padding: 16px;
+      font-size: 16px;
+      border: none;
+    }
+
+    .dropbtn2 {
+      background-color: red;
+      color: white;
+      padding: 16px;
+      font-size: 16px;
+      border: none;
+    }
+
+    .dropbtn3 {
+      background-color: red;
+      color: white;
+      padding: 16px;
+      font-size: 16px;
+      border: none;
+    }
+
+    .dropdown1 {
+
+      display: inline-block;
+    }
+
+    .dropdown2 {
+
+      display: inline-block;
+    }
+
+    .dropdown3 {
+
+      display: inline-block;
+    }
+
+    /* h2 { */
+    /* position: absolute; */
+    /* right: 622; */
+    /* } */
+
+    /* p {
+      position: absolute;
+      right: 510px;
+      top: 210px;
+    } */
+
+    .dropdown-content1 {
+      display: none;
+      position: absolute;
+      background-color: #f1f1f1;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+      z-index: 1;
+    }
+
+    .dropdown-content2 {
+      display: none;
+      position: absolute;
+      background-color: #f1f1f1;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+      z-index: 1;
+    }
+
+    .dropdown-content3 {
+      display: none;
+      position: absolute;
+      background-color: #f1f1f1;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+      z-index: 1;
+    }
+
+
+    .dropdown-content1 a {
+      color: black;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+    }
+
+    .dropdown-content2 a {
+      color: black;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+    }
+
+    .dropdown-content3 a {
+      color: black;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+    }
+
+    .dropdown-content1 a:hover {
+      background-color: #ddd;
+    }
+
+    .dropdown1:hover .dropdown-content1 {
+      display: block;
+    }
+
+    .dropdown1:hover .dropbtn1 {
+      background-color: red;
+    }
+
+    .dropdown-content2 a:hover {
+      background-color: #ddd;
+    }
+
+    .dropdown2:hover .dropdown-content2 {
+      display: block;
+    }
+
+    .dropdown2:hover .dropbtn2 {
+      background-color: red;
+    }
+
+    .dropdown-content3 a:hover {
+      background-color: #ddd;
+    }
+
+    .dropdown3:hover .dropdown-content3 {
+      display: block;
+    }
+
+    .dropdown3:hover .dropbtn3 {
+      background-color: red;
+    }
+
+    .WorkoutGenerator {
+      display: flex;
+      width: 100%;
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+
+    }
+
+    #workout-container {
+      text-align: center;
+      border: 2px solid red;
+      padding: 20px;
+      border-radius: 0px 0px 10px 10px;
+    }
+
+  </style>
+
+
+
+
+
+  <script>
+
+    function displayWorkout(workoutType) {
+      console.log('DISPLAY WORKOUT');
+      var workoutContainer = document.getElementById('workout-container');
+      workoutContainer.innerText = "";
+
+      fetch(`https://wger.de/api/v2/exercise/search/?term=${workoutType}`)
+        .then(function (response) {
+          // The API call was successful!
+          console.log('success!');
+
+          return response.json();
+          
+        })
+        //int range = 3; 
+  
+        // generate random numbers within 1 to 10 
+        //for (int i = 0; i < 3; i++) { 
+        //    int rand = (int)(Math.random() * range); 
+
+        .then(function (data) {
+          console.log(data.suggestions)
+
+          for(var w in data.suggestions) {
+            //console.log(data.suggestions[w].data.name);
+
+            workoutContainer.innerText += data.suggestions[w].data.name;
+            workoutContainer.innerHTML += '</br>';
+          }
+          
+
+          // here is where you will update workoutContainer.innerText
+
+          
+
+        })
+
+        .catch(function (err) {
+
+          // There was an error
+
+          console.warn('Something went wrong.',
+            err);
+
+        });
+
+    }
+
+
+
+
+
+
+
+  </script>
+  <h1 align="center">The Mecca</h1>
+  <ul>
+    <li><a class="active" href="Homepage.html">Home</a></li>
+    <li><a href="Onerep.html">One Rep</a></li>
+    <li><a href="Generator.html">Workout Generator</a></li>
+    <li><a href="Workout.html">Workout</a></li>
+  </ul>
+  <div class="WorkoutGenerator">
+
+    <h2>Workout Generator</h2>
+    <p>Pick between the dropdown menus what you would like to work on.</p>
+
+
+    <div class="WorkoutButtons">
+    
+      <div class="dropdown1">
+
+        <button class="dropbtn1">Upper Body</button>
+
+        <div class="dropdown-content1">
+
+          <a href="#" onClick="displayWorkout('bicep')">Biceps</a>
+
+          <a href="#" onClick="displayWorkout('tricep')">Triceps</a>
+
+          <a href="#" onClick="displayWorkout('shoulder')">Shoulders</a>
+
+          <a href="#" onClick="displayWorkout('pull')">Back</a>
+
+          <a href="#" onClick="displayWorkout('push')">Chest</a>
+
+          <!-- <a href="#" onClick="displayWorkout('ab')">Core</a> -->
+
+        </div>
+
+      </div>
+
+      <div class="dropdown2">
+
+        <button class="dropbtn2">Core</button>
+
+        <div class="dropdown-content2">
+
+          <a href="#" onClick="displayWorkout('Ab')">Abs</a>
+
+          <!-- <a href="#" onClick="displayWorkout('legs')">Legs</a> -->
+
+          <!-- <a href="#" onClick="displayWorkout('ab')">Core</a> -->
+
+        </div>
+      </div>
+
+      <div class="dropdown3">
+
+          <button class="dropbtn3">Lower Body</button>
+
+          <div class="dropdown-content3">
+
+            <a href="#" onClick="displayWorkout('calf')">Calves</a>
+
+            <a href="#" onClick="displayWorkout('knee')">Knees</a>
+
+            <a href="#" onClick="displayWorkout('leg')">Hamstrings</a>
+
+            <a href="#" onClick="displayWorkout('squat')">Butt/Quads</a>
+
+            <!-- <a href="#" onClick="displayWorkout('ab')">Core</a> -->
+
+          </div>
+      </div>
+
+
+          <div id="workout-container">
+            
+
+          </div>
+    </div>
+    
+  </div>
+
+</body>
+
+</html>

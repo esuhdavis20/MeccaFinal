@@ -1,0 +1,195 @@
+<!-- Jerry, Ive left some comments here that will hopefully help -->
+
+
+<!-- FIRST THING -->
+<!-- File Structure is important! -->
+<!-- Ive restructured your file accordingly -->
+  <!-- Style Code -->
+  <!-- JavaScript -->
+  <!-- HTML Code -->
+<!-- This did not fix your errors, but it is useful to keep track of what you are coding -->
+
+<!-- this is where the file contents should start -->
+<html> 
+  <body>
+   
+
+    <!-- styles FIRST so the page knows what styles to render before the HTML is read-->
+    <style>
+      .header{
+        width: 20%;
+        margin: 40px auto 0px;
+        color: white;
+        background: red;
+        text-align: center;
+        border: 1px solid red;
+        border-bottom: none;
+        border-radius: 5px 5px 0px 0px;
+        padding: 0px;
+      }
+      form{
+        width:20%;
+        margin:0px auto;
+        padding: 20px;
+        border: 2px solid red;
+        background: white;
+        border-radius: 0px 0px 10px 10px;
+        text-align: center;
+        font-size: 30px;
+      }
+        
+      
+      ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: #333;
+      }
+      li {
+        float: left;
+      }
+
+      li a {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+      }
+
+      li a:hover {
+        background-color: #111;
+      }
+      table {
+        border-collapse: collapse;
+        width: 100%;
+      }
+
+      th, td {
+        text-align: left;
+        padding: 8px;
+      }
+
+      tr:nth-child(even){background-color: #f2f2f2}
+
+      th {
+        background-color: red;
+        color: white;
+      }
+      br{
+        content: "A" !important;
+    display: block !important;
+    margin-bottom: 1.5em !important;
+      }
+      input{
+        height: 30px;
+        width: 96%;
+        padding: 5px 10px;
+        font-size: 16px;
+        border-radius: 5px;
+        border: 1px solid grey;
+      }
+      form{
+        width:20%;
+        margin:0px auto;
+        padding: 20px;
+        border: 2px solid red;
+        background: white;
+        border-radius: 0px 0px 10px 10px;
+        text-align: center;
+        font-size: 30px;
+      }
+      .header{
+        width: 33%;
+        margin: 50px auto 0px;
+        color: white;
+        background: red;
+        text-align: center;
+        border: 1px solid red;
+        border-bottom: none;
+        border-radius: 10px 10px 0px 0px;
+        padding: 0px;
+      }
+
+
+    </style>
+
+
+
+    <!-- Followed by any functions you want to include or any elements added via JS-->
+    <script>
+      function calculateMAX() {
+        // Using console.log is a way to see whats going on in your javascript
+        // as you inspect your javascript, flip over to the "Console" tab to see results
+        console.log('--Calculate Max--');
+
+        // document.getElementById looks for an HTML element which has an ID attrubute EG: 'id=<id name>' 
+        // your HTML code does not provide any elements with id attributes of weight and reps!! 
+        // your following two HTML elements have only type attributes and name attributes...
+
+        var weight = document.getElementById('weight').value; // there is no element with an id of weight!
+        var reps = document.getElementById('reps').value; // there is no element with an id of reps!
+
+        var newonerep = document.getElementById('newonerep'); // this code is great!
+
+        var percent = (100 - 2.5 * reps) / 100; 
+        // the above code is where the errors occur
+        // Hint #1: look into parseInt()
+          // parseInt() will turn any string numerical value to an integer
+          // look into the VALUE of each element to see what is typed in the form 
+          // reps at this point in the program is simply the HTML element that is a form
+          // reps.value will be the data that is placed inside the form input
+          // parseInt(reps.value) will get you a INTEGER value that can be used for arithmetic
+          // you must do the same with weight
+
+        var onerep = weight / percent; // this does not need to change, as long as the percent is updated
+
+        // here is a console.log of what your code shows currently
+        console.log(weight); // take a look at what weight is ... after you fix the HTML this should change!
+        console.log(reps); // take a look at what reps are ... after you fix the HTML this should change!
+        console.log(percent); // take a look at what percent is ... after you fix the percent variable this should change!
+        console.log(onerep); // take a look at what onerep is... after you fix the percent variable this should change!
+
+        newonerep.innerHTML = Math.round(onerep); // this code is great!
+        var thetable = document.getElementById("gainz");
+        for(var x = 100; x >=50; x-=5){
+          var weightcalc = onerep * (x/100.0);
+          thetable.innerHTML += "<tr><td>" + x + "</td><td>" + parseInt(weightcalc) + "</td></tr>"
+          }
+        //table code:
+      }
+    </script>
+
+
+
+    <!-- And finally the code that will display items on the screen -->
+    <h1 align="center">The Mecca</h1>
+    <ul>
+      <li><a href="homepage.html">Home</a></li>
+      <li><a href="Onerep.html">One Rep</a></li>
+      <li><a href="Generator.html">Workout Generator</a></li>
+      <li><a href="Workout.html">Workout</a></li>
+    </ul>
+    <body>
+      </div>
+    <form>
+      Reps:<br/>
+      <!-- You need to add an ID attribute to these inputs so they can be accessed by your JS -->
+      <input type="int" name="reps" id="reps" />
+      <br />
+      Weight:<br align="center"/>
+      <input type="int" name="weight" id="weight" />
+      <br /><br />
+    </form>
+    <form>
+      <!-- this code is great! -->
+      <div id="Calculate" onclick="calculateMAX();">Calculate</div>
+      <div id="newonerep" ></div>
+    </form>
+    <table id="gainz">
+      <tr><th>Percent</th><th>Weight</th></tr>
+    </table>
+    <div class = "header";>
+  </body>
+</html>
